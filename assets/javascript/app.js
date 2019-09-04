@@ -1,21 +1,72 @@
 console.log("I am attached");
 //
 //
+var currentQuestion = 1;
 var intervalId;
 var clockRunning = false;
-var time = 30;
+var time = 2;
+var myQuestions = {
+  // key: ["answer", "question", "A", "B","C","D"];
+  Q1: [
+    "D None of the Above",
+    "Who does Arya Stark Marry?",
+    "A Ramsey Bolton",
+    "B Petyr Baelish",
+    "C Gendry Baratheon",
+    "D None of the Above"
+  ],
+  Q2: [
+    "C Arya's Dagger (Catspaw)",
+    "How does the Night King die?",
+    "A Drogon's fire",
+    "B John Snow's Long Claw",
+    "C Arya's Dagger (Catspaw)",
+    "D Samwell Tarly's Dragonglass"
+  ],
+  Q3: [
+    "B Dracarys is the command to breath fire",
+    "Which Dragon is not one of Daenerys's Dragon?",
+    "A Viserion",
+    "B Dracarys",
+    "C Drogon",
+    "D Rhaegal"
+  ],
+  Q4: [
+    "A Sandor Clegane",
+    "Who kills Gregor Clegane?",
+    "A Sandor Clegane",
+    "B Oberyn Martell",
+    "C Maester Qyburn",
+    "D Arya Stark"
+  ]
+};
 //Global Variables
 window.onload = function() {
   $("#start").on("click", start);
+  //pop the first question
+  console.log(myQuestions.Q1[1]);
 };
+
+function nextQuestion() {
+  currentQuestion++;
+  $("#display").text("30");
+  //displaying questions
+  $(".card-title").text(`${myQuestions}.Q${currentQuestion}`[1]);
+  $(".Question-one-label").text(myQuestions.Q1[2]);
+  $(".Question-two-label").text(myQuestions.Q1[3]);
+  $(".Question-three-label").text(myQuestions.Q1[4]);
+  $(".Question-four-label").text(myQuestions.Q1[5]);
+  console.log(currentQuestion);
+}
+
 function start() {
   $("#display").text("30");
   //displaying questions
-  $(".card-title").text("What house does John Snow belong too?");
-  $(".Question-one-label").text("Stark");
-  $(".Question-two-label").text("Lannister");
-  $(".Question-three-label").text("Targaryen");
-  $(".Question-four-label").text("Tyrell");
+  $(".card-title").text(myQuestions.Q1[1]);
+  $(".Question-one-label").text(myQuestions.Q1[2]);
+  $(".Question-two-label").text(myQuestions.Q1[3]);
+  $(".Question-three-label").text(myQuestions.Q1[4]);
+  $(".Question-four-label").text(myQuestions.Q1[5]);
   if (!clockRunning) {
     intervalId = setInterval(count, 1000);
     clockRunning = true;
@@ -28,6 +79,11 @@ function start() {
 //to populate a new question?.
 //Do I need to gut most of my code to make a for loop work?
 
+//"What house does John Snow belong too?"
+//"Stark"
+//"Lannister"
+//"Targaryen"
+//"Tyrell"
 //Quiz Questions
 //
 //
@@ -81,6 +137,11 @@ function count() {
 //Time Function
 //
 function timeConverter(t) {
+  if (time <= 0) {
+    clearInterval(intervalId);
+    nextQuestion();
+  }
+
   var minutes = Math.floor(t / 60);
   var seconds = t - minutes * 60;
   if (seconds < 10) {
