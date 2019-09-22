@@ -1,125 +1,94 @@
 console.log("I am attached");
 //
 //
-var currentQuestion = 1;
+var currentQuestion = 0;
 var intervalId;
 var clockRunning = false;
-var time = 2;
-var myQuestions = {
-  // key: ["answer", "question", "A", "B","C","D"];
-  Q1: [
-    "D None of the Above",
-    "Who does Arya Stark Marry?",
-    "A Ramsey Bolton",
-    "B Petyr Baelish",
-    "C Gendry Baratheon",
-    "D None of the Above"
-  ],
-  Q2: [
-    "C Arya's Dagger (Catspaw)",
-    "How does the Night King die?",
-    "A Drogon's fire",
-    "B John Snow's Long Claw",
-    "C Arya's Dagger (Catspaw)",
-    "D Samwell Tarly's Dragonglass"
-  ],
-  Q3: [
-    "B Dracarys is the command to breath fire",
-    "Which Dragon is not one of Daenerys's Dragon?",
-    "A Viserion",
-    "B Dracarys",
-    "C Drogon",
-    "D Rhaegal"
-  ],
-  Q4: [
-    "A Sandor Clegane",
-    "Who kills Gregor Clegane?",
-    "A Sandor Clegane",
-    "B Oberyn Martell",
-    "C Maester Qyburn",
-    "D Arya Stark"
-  ]
-};
+var time = 10;
+var myQuestions = [
+  {
+    question: "Who does Arya Stark Marry?",
+    correct_answer: "D None of the Above",
+    choices: [
+      "A Ramsey Bolton",
+      "B Petyr Baelish",
+      "C Gendry Baratheon",
+      "D None of the Above"
+    ]
+  },
+  {
+    question: "What house does John Snow belong too?",
+    correct_answer: "C Targaryen",
+    choices: ["A Stark", "B Lannister", "C Targaryen", "D Tyrell"]
+  },
+  {
+    question: "How does the Night King die?",
+    correct_answer: "C Arya's Dagger (Catspaw)",
+    choices: [
+      "A Drogon's fire",
+      "B John Snow's Long Claw",
+      "C Arya's Dagger (Catspaw)",
+      "D Samwell Tarly's Dragonglass"
+    ]
+  },
+  {
+    question: "Which Dragon is not one of Daenerys's Dragon?",
+    correct_answer: "B Dracarys",
+    choices: ["A Viserion", "B Dracarys", "C Drogon", "D Rhaegal"]
+  },
+  {
+    question: "Who kills Gregor Clegane?",
+    correct_answer: "A Sandor Clegane",
+    choices: [
+      "A Sandor Clegane",
+      "B Oberyn Martell",
+      "C Maester Qyburn",
+      "D Arya Stark"
+    ]
+  }
+];
+
 //Global Variables
 window.onload = function() {
   $("#start").on("click", start);
-  //pop the first question
-  console.log(myQuestions.Q1[1]);
 };
-
+function rightAnswer(i, answer) {
+  alert("you clicked the right answer");
+}
 function nextQuestion() {
-  currentQuestion++;
-  $("#display").text("30");
-  //displaying questions
-  $(".card-title").text(`${myQuestions}.Q${currentQuestion}`[1]);
-  $(".Question-one-label").text(myQuestions.Q1[2]);
-  $(".Question-two-label").text(myQuestions.Q1[3]);
-  $(".Question-three-label").text(myQuestions.Q1[4]);
-  $(".Question-four-label").text(myQuestions.Q1[5]);
+  //! Accessing objects
+  let presentQuestion = myQuestions[currentQuestion];
+  $(".card-title").text(presentQuestion.question);
+  console.log(presentQuestion);
+  //! Take advantage of data structures. Loop over question.choices (an array)
+  for (var i = 0; i < presentQuestion.choices.length; i++) {
+    $(`.Question-${i}-label`).text(presentQuestion.choices[i]);
+  }
+  var answer = myQuestions[currentQuestion].correct_answer;
+  $(".form-check-input").on("click", rightAnswer(i, answer));
+  //! Moved to bottom
+  //currentQuestion++;
   console.log(currentQuestion);
 }
-
 function start() {
-  $("#display").text("30");
-  //displaying questions
-  $(".card-title").text(myQuestions.Q1[1]);
-  $(".Question-one-label").text(myQuestions.Q1[2]);
-  $(".Question-two-label").text(myQuestions.Q1[3]);
-  $(".Question-three-label").text(myQuestions.Q1[4]);
-  $(".Question-four-label").text(myQuestions.Q1[5]);
+  $("#display").text("00:10");
+
+  nextQuestion();
+
   if (!clockRunning) {
     intervalId = setInterval(count, 1000);
     clockRunning = true;
+    // console.log(converted);
+  }
+  if (
+    $(`.Question-${i}-label`).on(
+      "click",
+      myQuestions[currrentQuestion].correct_answer
+    )
+  ) {
+    alert("Correct");
   }
 }
-//How do I get my timer to stop counting down?
-//How do I make my gifs pop up with "right" or "wrong" responses?
-//How do I make the next questions come up in the HTML after the GIF?
-//Do I need to make an Array and For Loop to hold the questions and call it with a function and index
-//to populate a new question?.
-//Do I need to gut most of my code to make a for loop work?
-
-//"What house does John Snow belong too?"
-//"Stark"
-//"Lannister"
-//"Targaryen"
-//"Tyrell"
-//Quiz Questions
-//
-//
-///////////
-//Who does Arya Stark Marry?
-//a Ramsey Bolton
-//b Petyr Baelish
-//c Gendry Baratheon
-//d None of the Above
-//
-//ANSWER D Sansa marries Ramsey Bolton
-///////////
-//How does the Night King die?
-//a Drogon's fire
-//b John Snow's Long Claw
-//c Arya's Dagger (Catspaw)
-//d Samwell Tarly's Dragonglass
-//
-//ANSWER c Arya's Dagger (Catspaw)
-////////////
-//Which Dragon is not one of Daenerys's Dragon?
-//a Viserion
-//b Dracarys
-//c Drogon
-//d Rhaegal
-//
-//ANSWER b Dracarys is the command to breath fire
-////////////
-//Who kills Gregor Clegane?
-//a Sandor Clegane
-//b Oberyn Martell
-//c Maester Qyburn
-//d Arya Stark
-//
-//ANSWER a Sandor Clegane
-/////////////
 
 function count() {
   time--;
