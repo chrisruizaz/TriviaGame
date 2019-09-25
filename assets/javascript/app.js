@@ -52,24 +52,31 @@ var myQuestions = [
 window.onload = function() {
   $("#start").on("click", start);
 };
-function rightAnswer(i, answer) {
-  alert("you clicked the right answer");
-}
+
 function nextQuestion() {
   //! Accessing objects
-  let presentQuestion = myQuestions[currentQuestion];
+  var presentQuestion = myQuestions[currentQuestion];
   $(".card-title").text(presentQuestion.question);
   console.log(presentQuestion);
   //! Take advantage of data structures. Loop over question.choices (an array)
   for (var i = 0; i < presentQuestion.choices.length; i++) {
     $(`.Question-${i}-label`).text(presentQuestion.choices[i]);
   }
-  var answer = myQuestions[currentQuestion].correct_answer;
-  $(".form-check-input").on("click", rightAnswer(i, answer));
+  $("#inline_content input[name='exampleRadios']").click(function() {
+    alert("you clicked Radio!");
+    var value = $("input:radio[name=exampleRadios]:checked").val();
+
+    var label = $(`.Question-${value}-label`);
+    if ($("input:radio[name=exampleRadios]:checked").val() == "1") {
+      alert($("input:radio[name=type]:checked").val());
+      //$('#select-table > .roomNumber').attr('enabled',false);
+    }
+  });
   //! Moved to bottom
   //currentQuestion++;
   console.log(currentQuestion);
 }
+
 function start() {
   $("#display").text("00:10");
 
@@ -80,16 +87,16 @@ function start() {
     clockRunning = true;
     // console.log(converted);
   }
-  if (
-    $(`.Question-${i}-label`).on(
-      "click",
-      myQuestions[currrentQuestion].correct_answer
-    )
-  ) {
-    alert("Correct");
-  }
 }
-
+// $("#inline_content input[name='exampleRadios']").click(function() {
+//   alert("you clicked Radio!");
+//   if ($("input:radio[name=type]:checked").val() == myQuestions.correct_answer) {
+//     alert($("input:radio[name=type]:checked").val());
+//     //$('#select-table > .roomNumber').attr('enabled',false);
+//   }
+// });
+//On click function for radio
+//
 function count() {
   time--;
   var converted = timeConverter(time);
@@ -100,6 +107,7 @@ function count() {
   $("#display").text(converted);
   if (time == 0) {
     clockRunning = false;
+    nextQuestion(currentQuestion++);
   }
 }
 //
