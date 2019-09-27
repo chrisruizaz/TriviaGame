@@ -55,9 +55,10 @@ window.onload = function() {
 
 function nextQuestion() {
   //is the game over
-  if (currentQuestion < myQuestions.length) {
+  if (currentQuestion < myQuestions.length && currentQuestion > 0) {
     alert("Keep Going");
-  } else {
+  }
+  if (currentQuestion > myQuestions.length) {
     alert("You Win");
   }
   //! Accessing objects
@@ -68,19 +69,19 @@ function nextQuestion() {
   for (var i = 0; i < presentQuestion.choices.length; i++) {
     $(`.Question-${i}-label`).text(presentQuestion.choices[i]);
   }
+
+  //checking answers
+  $("#inline_content input[name='exampleRadios']").click(function() {
+    var value = $("input:radio[name=exampleRadios]:checked").val();
+
+    var userInput = $(`.Question-${value}-label`).text();
+    console.log(userInput);
+
+    if (userInput === presentQuestion.correct_answer) {
+      nextQuestion(currentQuestion++);
+    }
+  });
 }
-//checking answers
-$("#inline_content input[name='exampleRadios']").click(function() {
-  var value = $("input:radio[name=exampleRadios]:checked").val();
-
-  var userInput = $(`.Question-${value}-label`).text();
-  console.log(userInput);
-
-  if (userInput === presentQuestion.correct_answer) {
-  }
-  nextQuestion(currentQuestion++);
-});
-
 function start() {
   $("#display").text("00:30");
 
