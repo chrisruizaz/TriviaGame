@@ -4,7 +4,7 @@ console.log("I am attached");
 var currentQuestion = 0;
 var intervalId;
 var clockRunning = false;
-var time = 10;
+var time = 30;
 var myQuestions = [
   {
     question: "Who does Arya Stark Marry?",
@@ -54,6 +54,12 @@ window.onload = function() {
 };
 
 function nextQuestion() {
+  //is the game over
+  if (currentQuestion < myQuestions.length) {
+    alert("Keep Going");
+  } else {
+    alert("You Win");
+  }
   //! Accessing objects
   var presentQuestion = myQuestions[currentQuestion];
   $(".card-title").text(presentQuestion.question);
@@ -62,23 +68,21 @@ function nextQuestion() {
   for (var i = 0; i < presentQuestion.choices.length; i++) {
     $(`.Question-${i}-label`).text(presentQuestion.choices[i]);
   }
-  $("#inline_content input[name='exampleRadios']").click(function() {
-    alert("you clicked Radio!");
-    var value = $("input:radio[name=exampleRadios]:checked").val();
-
-    var label = $(`.Question-${value}-label`);
-    if ($("input:radio[name=exampleRadios]:checked").val() == "1") {
-      alert($("input:radio[name=type]:checked").val());
-      //$('#select-table > .roomNumber').attr('enabled',false);
-    }
-  });
-  //! Moved to bottom
-  //currentQuestion++;
-  console.log(currentQuestion);
 }
+//checking answers
+$("#inline_content input[name='exampleRadios']").click(function() {
+  var value = $("input:radio[name=exampleRadios]:checked").val();
+
+  var userInput = $(`.Question-${value}-label`).text();
+  console.log(userInput);
+
+  if (userInput === presentQuestion.correct_answer) {
+  }
+  nextQuestion(currentQuestion++);
+});
 
 function start() {
-  $("#display").text("00:10");
+  $("#display").text("00:30");
 
   nextQuestion();
 
@@ -107,7 +111,6 @@ function count() {
   $("#display").text(converted);
   if (time == 0) {
     clockRunning = false;
-    nextQuestion(currentQuestion++);
   }
 }
 //
