@@ -11,11 +11,8 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+    </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -40,13 +37,19 @@
         alt="..."
       />
       <div class="card-img-overlay">
-        <h1 class="display-4"><p class="text-center">Game of Thrones Trivia</p></h1>
+        <h1 class="display-2"><p class="text-center">Game of Thrones Trivia</p></h1>
+        <h2 class="display-8"><p class="lead"><p class="text-center">This is the Game Of Thrones Trivia Game. 
+          Guess an answer right and watch the fun! 
+          Guess the answer wrong and start all over! 
+          Click start, scroll down, and enjoy!
+        </p></p></h2>
         <p class="lead"><p class="text-center">CLICK <button id="start">START</button> TO BEGIN!</p></p>
       </div>
     </div>
     </div>
   </div>
     <!--IN HERE SHOULD BE WHERE THE SLIDES GO-->
+    <div class= "container">
     <div id="slide-holder">
       <div class="card bg-dark text-white">
             <div class="card-header"><p class="font-weight-bold">Time Remaining: <span id="display">00</span></p> 
@@ -63,37 +66,44 @@
           alt="..."
         />
         <div class="card-img-overlay">
+          <div class = "my-choices">
             <div id = "inline_content">
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="Question1" value="0">
-                <label class="Question-0-label" for="Question1">
+                <label class="Question-0-label" for="Question1"><p class="text-danger">
                   You can't start yet
+                </p>
                 </label>
               </div>
               
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="Question2" value="1">
-                <label class="Question-1-label" for="Question2">
+                <label class="Question-1-label" for="Question2"><p class="text-danger">
                     You can't start yet
+                </p>
                 </label>
               </div>
               
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="Question3" value="2">
-                <label class="Question-2-label" for="Question3">
+                <label class="Question-2-label" for="Question3"><p class="text-danger">
                     You can't start yet
+                </p>
                 </label>
               </div>
               
               <div class="form-check">
                   <input class="form-check-input" type="radio" name="exampleRadios" id="Question4" value="3">
-                  <label class="Question-3-label" for="Question4">
+                  <label class="Question-3-label" for="Question4"><p class="text-danger">
                       You can't start yet
+                  </p>
                   </label>
-                </div></div>
+                </div>
+              </div>
+              </div>
               </div>
           </div></div></div>
-    </div>
+    </div></div></div>
     <script src="assets/javascript/app.js"></script>
   </body>
 </html>
