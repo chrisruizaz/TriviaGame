@@ -107,13 +107,7 @@ $("#inline_content input[name='exampleRadios']").click(function() {
     currentQuestion += 1;
     nextQuestion();
   } else if (userInput != presentQuestion.correct_answer) {
-    // $.ajax({
-    //   url: queryURL,
-    //   method: "GET"
-    ///////////////////////////////wrong answer display gif
-    //  }).then(function(response) {
-    //  var wrongAnswer = response.data[22].images.original.url; ///////////Save this for the Gif index
-    //  });
+    //wrong answer display gif
     var wrongAnswer =
       "https://media2.giphy.com/media/SRwH5w22ttzlpyCrCv/giphy.gif?cid=6ed228c7ea93101a0474375ddba2492c0cf17b7f7cc20c86&rid=giphy.gif";
     $("#cardImg").attr("src", wrongAnswer);

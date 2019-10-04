@@ -1,3 +1,18 @@
+// console.log(myQuestions.presentQuestion);
+// console.log(myQuestions.myQuestions);
+// console.log(myQuestions.currentQuestion);
+// console.log(myQuestions.time);
+//displaying questions
+// $(".card-title").text(myQuestions.question);
+// $(".Question-one-label").text(myQuestions.choices[0]);
+// $(".Question-two-label").text(myQuestions.choices[1]);
+// $(".Question-three-label").text(myQuestions.choices[2]);
+// $(".Question-four-label").text(myQuestions.choices[3]);
+// if (!clockRunning) {
+//   intervalId = setInterval(count, 1000);
+//   clockRunning = true;
+// }
+
 function nextQuestion_ORIG() {
   currentQuestion++;
   $("#display").text("30");
@@ -99,3 +114,11 @@ function nextQuestion_ORIG() {
 //
 //ANSWER a Sandor Clegane
 /////////////
+
+// $.ajax({
+//   url: queryURL,
+//   method: "GET"
+///////////////////////////////wrong answer display gif
+//  }).then(function(response) {
+//  var wrongAnswer = response.data[22].images.original.url; ///////////Save this for the Gif index
+//  });
